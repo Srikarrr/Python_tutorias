@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+   web:
+     build: ./frontend
+     ports:
+       - 3000:3000
+   api:
+    build: ./backend
+    ports:
+       - 3001:3001
+    environment:
+       - DB_URL =mongodb://db/vidly   
+   db:
+    image: mongo:4.0-xenial
+    ports:
+       - 27017:27017
+    volumes:
+      - vidly:/data/db
+    volumes:
+      vidly:
+
+
+
+version: "3.0"
+services:
+  mongodb:
+    image: mongo
+    ports:
+     -27017:27017
+    environment:
+     - MONGO_INITDB_ROOT_USERNAME = admin
+     - MONGO_INITDB_ROOT_PASSWORD = password
+
+     mongo-express:
+       image: mongo-express
+       ports: 
+         - 8081:8081
+       environment:
+         - ME_CONFIG_MONGODB_ADMINUSERNAME = admin
+         - ME_CONFIG_MONGODB_ADMINPASSWORD = password
+         - ME_CONFIG_MONGODB_SERVER: mongodb
+       depends_on:
+        - "mongodb"
+
+
+TO START MONGO DB
+
+docker run -d \
+           -p 27017:27107
+           -e MONGO_INITDB_ROOT_USERNAME=admin \
+           -e MONGO_INITDB_ROOT_PASSWORD=password \
+           --net mongo-network \
+           --name mongodb \
+           mongo
