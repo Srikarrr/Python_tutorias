@@ -54,5 +54,7 @@ print(str.capitalize())
 print(str)
 str=str.capitalize()
 print(str)
-
 print(str.replace("python","javascript"))
+
+str="I am studying java from pythoncollege"
+print(str.replace("java","python"))
