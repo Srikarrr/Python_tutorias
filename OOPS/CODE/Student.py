@@ -1,5 +1,6 @@
 class Student:
        numberOfStudents = 0 # at the class level to use this we need to access with student class
+       schoolName = "MAPS"
 
        def __init__(self,name,rollNumber,marks):
              #print(id(self))
@@ -31,22 +32,17 @@ class Student:
 
 s1=Student("Mayank",1,90)    
 s2=Student("Goku",2,50)
-#s1.name,s1.marks,s1.rollNumber
-#s1.study()
-#s2.name,s2.marks,s2.rollNumber
-#s2.study()
-#s1.numberOfStudents,s2.numberOfStudents
-#Student("ABC",3,75)
-#print(id(s1))         
 
+s1.marks
+s2.marks
+s1.marks=45
+
+#Student.schoolName
+#print(s1.getMarks())
 #s1.marks = 45
-#s1.marks
-
-print(s1.getMarks())
-s1.marks = 45
-print(s1.getMarks())
-s1.setMarks(95,"0001")
-s1.getMarks()
+#print(s1.getMarks())
+#s1.setMarks(95,"0001")
+#s1.getMarks()
 # lets say you have bank account application now you need to safeguard those variable now you need to safeguard
 # the marks variable 
 
