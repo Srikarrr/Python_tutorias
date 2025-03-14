@@ -1,9 +1,9 @@
 class User:
       def __init__(self,name,id,age,passCode):
-      self.name=name
-      self.id=id
-      self.age=age
-      self.passCode=passCode
+       self.name=name
+       self.id=id
+       self.age=age
+       self.passCode=passCode
 
       def login(self):
           print("logged in")

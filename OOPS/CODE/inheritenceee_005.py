@@ -5,10 +5,10 @@ class Grandfather:
           self.age  = age
 
       def show_details(self):
-          print f"Name: {self.name}, Age: {self.age}'
+            return f'Name: {self.name}, Age: {self.age}'
 
       def speak(self):
-          print "Grandfather speaks wisely."
+          return "Grandfather speaks wisely."
 
 class Father(Grandfather):
       def __init__(self,name,age,occupation):
@@ -16,15 +16,15 @@ class Father(Grandfather):
           self.occupation = occupation
 
       def showOccupation(self):
-          print f"Occupation: {self.occupation}'
+        print(f"Occupation: {self.occupation}")
 
       def speak(self):
-          print "Father speaks carefully"
+        print("Father speaks carefully.")
 
-      father_obj=Father('John',50,'Engineer')
-      print(father_obj.show_details())  # uses parents method
-      print(father_obj.showOccupation()) # uses own child method
-      print(father_obj.speak())          # uses own child method
+father_obj = Father('John', 50, 'Engineer')
+print(father_obj.show_details())  # uses parents method
+print(father_obj.showOccupation()) # uses own child method
+print(father_obj.speak())          # uses own child method
 
 #Hierarchichal Inheritence Example
 class Grandfather:
@@ -32,10 +32,10 @@ class Grandfather:
           self.name=name
           self.age = age
 
-       def show_details(self):
-           return f'Name: {self.name}, Age: {self.age}'
+      def show_details(self):
+          return f'Name: {self.name}, Age: {self.age}'
 
-       def speak(self):
+      def speak(self):
            return 'Grandfather speaks wisely'
 
 class Child1(Grandfather):
@@ -49,7 +49,7 @@ class Child1(Grandfather):
       def speak(self):
           return 'Child1 speaks enthusiastically'
 
-class child2(Grandfather):
+class Child2(Grandfather):
      def __init__(self,name,age,favorite_subject):
          super().__init__(name,age)
          self.favorite_subject=favorite_subject
