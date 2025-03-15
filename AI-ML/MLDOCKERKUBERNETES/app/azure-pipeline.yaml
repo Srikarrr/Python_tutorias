@@ -1,0 +1,58 @@
+trigger:
+- main  # Automatically trigger when pushing to the 'main' branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Use Ubuntu VM image for the pipeline
+
+variables:
+  imageName: 'ai-ml-app'  # Name of the Docker image
+  containerRegistry: 'youracr.azurecr.io'  # ACR repository name
+  kubernetesCluster: 'your-aks-cluster'  # AKS cluster name
+  kubernetesNamespace: 'default'  # Kubernetes namespace
+  dockerRegistryServiceConnection: 'your-docker-service-connection'  # Docker service connection (ACR)
+
+jobs:
+- job: Build_and_Deploy
+  displayName: 'Build Docker Image and Deploy to AKS'
+  steps:
+    # Step 1: Checkout the source code
+    - task: Checkout@1
+      displayName: 'Checkout source code'
+
+    # Step 2: Train the model (Run train.py)
+    - script: |
+        python train.py
+      displayName: 'Train Machine Learning Model'
+
+    # Step 3: Build the Docker image
+    - task: Docker@2
+      displayName: 'Build Docker Image'
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: $(containerRegistry)/$(imageName)
+        command: 'build'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: 'latest'
+
+    # Step 4: Push the Docker image to ACR
+    - task: Docker@2
+      displayName: 'Push Docker Image to ACR'
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: $(containerRegistry)/$(imageName)
+        command: 'push'
+        tags: 'latest'
+
+    # Step 5: Deploy the Docker image to AKS
+    - task: AzureCLI@2
+      displayName: 'Deploy to AKS'
+      inputs:
+        azureSubscription: 'your-azure-subscription'  # Azure subscription for AKS
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          # Connect to the AKS cluster
+          az aks get-credentials --resource-group your-resource-group --name $(kubernetesCluster)
+
+          # Apply the Kubernetes Deployment YAML to AKS
+          kubectl apply -f $(Build.SourcesDirectory)/k8s-deployment.yaml

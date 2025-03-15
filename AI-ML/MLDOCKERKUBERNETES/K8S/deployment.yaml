@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-flask-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-flask-app
+  template:
+    metadata:
+      labels:
+        app: ml-flask-app
+    spec:
+      containers:
+      - name: ml-flask-app
+        image: ml-flask-app:latest  # This image name should match the one you push to a registry (e.g., DockerHub)
+        ports:
+        - containerPort: 5000

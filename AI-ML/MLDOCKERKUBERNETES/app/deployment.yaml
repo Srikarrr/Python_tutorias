@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-ml-deployment
+spec:
+  replicas: 3  # Run three replicas of the app
+  selector:
+    matchLabels:
+      app: ai-ml-app
+  template:
+    metadata:
+      labels:
+        app: ai-ml-app
+    spec:
+      containers:
+      - name: ai-ml-app
+        image: youracr.azurecr.io/ai-ml-app:latest  # Docker image name (use ACR or Docker Hub)
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-ml-service
+spec:
+  selector:
+    app: ai-ml-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
