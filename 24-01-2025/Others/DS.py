@@ -31,7 +31,7 @@ for i in range(len(numbers)):
 
 #1st approach iterate all values
 
-for i in range(len(numbers))
+for i in range(len(numbers)):
      if numbers[i] == 68:
         print(i)
 # O(N)

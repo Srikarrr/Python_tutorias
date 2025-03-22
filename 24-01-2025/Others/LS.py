@@ -23,9 +23,9 @@ class LinkedList:
               llstr+=str(itr.data) + '-->'
               itr=itr.next    
 
-            print(llstr)
+              print(llstr)
 
-       def insert_at_end(self,data):
+        def insert_at_end(self,data):
            if self.head is None:
               self.head = Node(data,None)
               return
@@ -36,12 +36,12 @@ class LinkedList:
 
            itr.next=Node(data,None)  
 
-       def insert_values(self,data_list):
-        self.head = None    
+        def insert_values(self,data_list):
+          self.head = None    
         for data in data_list:
             self.insert_at_end(data)
 
-       def get_length(self):
+        def get_length(self):
            count=0
            itr=self.head
            while itr:
@@ -50,7 +50,7 @@ class LinkedList:
 
            return count      
 
-       def remove_at(self,index):
+        def remove_at(self,index):
            if index<0 or index>=self.get_length():
             raise Exception("Invalid Index")
 
@@ -67,7 +67,7 @@ class LinkedList:
                   itr=itr.next    
                   count+=1    
 
-      def insert_at(self,index,data):
+        def insert_at(self,index,data):
           if index<0 or index>self.get_length():
             raise Exception("Invalid Index") 
 
@@ -78,13 +78,13 @@ class LinkedList:
           count=0
           itr=self.head
           while itr:
-                 if count == index-1;
-                 node = Node(data,itr.next)
+                 if count == index-1:
+                  node = Node(data,itr.next)
 
                  itr=itr.next
                  count+=1                 
 
- if __name__ = '__main__':
+if __name__ == '__main__':
     ll = linkedlist()
     ll.insert_values(["banana","mango","grapes","orange"])
     ll.print()

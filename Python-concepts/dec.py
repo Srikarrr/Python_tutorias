@@ -9,7 +9,6 @@ def decorator(func):
 
 # Applying the decorator to a function
 @decorator
-
 def greet():
     print("Hello, World!")
 

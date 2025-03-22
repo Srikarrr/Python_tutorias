@@ -19,8 +19,8 @@ class linkedlist:  #It is a wrapper around Node
         new_node=node(data);  #pass the data and it calls the node constructor
         cur=self.head         #stores the left most value in the cur variable
         while cur.next!=None: # iterate each value until last value 
-              cur = cur.next
-              cur.next = new_node # last element set to new_node
+                cur = cur.next
+        cur.next = new_node # last element set to new_node
 
     def length(self):  # length of our linked list
         cur=self.head

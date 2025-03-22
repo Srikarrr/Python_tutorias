@@ -35,3 +35,7 @@ image = np.array([
 
 result = min_path_sum(image)
 print(f"Minimum path sum: {result}")
+
+
+#Time Complexity:𝑂(𝑚×𝑛) O(m×n), since each cell is visited once.
+#Space Complexity: 𝑂(𝑚×𝑛) O(m×n), due to the dp table.

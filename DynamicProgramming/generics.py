@@ -9,7 +9,7 @@ class ImageProcessor(Generic[T]):
     def __init__(self, image: T):
         self.image = image
 
-    def apply_filter(self) -> T:
+    def apply_filter(self) -> T: # returns instance of T
         """Applies a simple image filter (blur for example)."""
         if isinstance(self.image, np.ndarray):
             # Using OpenCV or other libraries to apply a filter to the numpy image
@@ -32,11 +32,11 @@ class ImageProcessor(Generic[T]):
 # Example usage with numpy array image (e.g., an OpenCV image)
 image_np = np.random.rand(100, 100, 3)  # A dummy numpy image
 processor_np = ImageProcessor(image_np)
-processed_image_np = processor_np.apply_filter()
+processed_image_np = processor_np.apply_filter() # Sending this data image_np = np.random.rand(100, 100, 3)
 processor_np.show_image()
 
 # Example usage with a PIL image
 image_pil = Image.open("example.jpg")  # Replace with an actual file path
 processor_pil = ImageProcessor(image_pil)
-processed_image_pil = processor_pil.apply_filter()
+processed_image_pil = processor_pil.apply_filter() # Sending this data image_pil = Image.open("example.jpg")
 processor_pil.show_image()
